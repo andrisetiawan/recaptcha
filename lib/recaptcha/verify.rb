@@ -25,7 +25,7 @@ module Recaptcha
         if Recaptcha.configuration.v1?
           verify_hash = {
             "privatekey" => private_key,
-            "remoteip"   => request.remote_ip,
+            "remoteip"   => request.ip,
             "challenge"  => params[:recaptcha_challenge_field],
             "response"   => params[:recaptcha_response_field]
           }
@@ -38,7 +38,7 @@ module Recaptcha
         if Recaptcha.configuration.v2?
           verify_hash = {
             "secret"    => private_key,
-            "remoteip"  => request.remote_ip,
+            "remoteip"  => request.ip,
             "response"  => params['g-recaptcha-response']
           }
 
